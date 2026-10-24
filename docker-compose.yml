@@ -1,0 +1,13 @@
+services:
+  vpn-socks:
+    build: .
+    container_name: vpn-socks
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    volumes:
+      - ./vpn:/vpn:ro
+    ports:
+      - "127.0.0.1:1080:1080"
+    restart: unless-stopped
